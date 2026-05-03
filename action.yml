@@ -1,0 +1,56 @@
+name: 'AI Release Notes'
+description: 'Generates polished, user-facing release notes from git history using AI. Categorizes changes, highlights breaking changes, writes for non-technical audiences.'
+branding:
+  icon: 'book-open'
+  color: 'purple'
+
+inputs:
+  ai-provider:
+    description: 'AI provider: openai, anthropic'
+    required: false
+    default: 'openai'
+  api-key:
+    description: 'API key for the AI provider'
+    required: true
+  model:
+    description: 'Model to use (e.g., gpt-4o-mini, claude-sonnet-4-20250514)'
+    required: false
+    default: 'gpt-4o-mini'
+  from-ref:
+    description: 'Git ref to start from (tag, commit, branch). Defaults to latest tag.'
+    required: false
+    default: ''
+  to-ref:
+    description: 'Git ref to end at. Defaults to HEAD.'
+    required: false
+    default: 'HEAD'
+  output-file:
+    description: 'Path to write release notes'
+    required: false
+    default: 'RELEASE_NOTES.md'
+  include-pr-links:
+    description: 'Include PR links in release notes'
+    required: false
+    default: 'true'
+  audience:
+    description: 'Target audience: developers, users, both'
+    required: false
+    default: 'both'
+  max-commits:
+    description: 'Maximum number of commits to process'
+    required: false
+    default: '200'
+  github-token:
+    description: 'GitHub token for PR information'
+    required: false
+    default: ${{ github.token }}
+
+outputs:
+  release-notes:
+    description: 'Generated release notes content'
+  output-path:
+    description: 'Path to the release notes file'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
