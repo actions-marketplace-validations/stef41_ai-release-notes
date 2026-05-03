@@ -1,5 +1,5 @@
 name: 'AI Release Notes'
-description: 'Generates polished, user-facing release notes from git history using AI. Categorizes changes, highlights breaking changes, writes for non-technical audiences.'
+description: 'Generates polished, user-facing release notes from git history using AI (OpenAI or Anthropic).'
 branding:
   icon: 'book-open'
   color: 'purple'
